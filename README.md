@@ -51,27 +51,27 @@
 
     train_df.head(5)
     
-![ai03](https://github.com/zipo0505/AIhw/blob/main/ai3.jepg)
+![ai03](https://github.com/zipo0505/AIhw/blob/main/ai3.jpeg)
 
     train_df.info()
     
-![ai4](https://github.com/zipo0505/AIhw/blob/main/ai4.jepg)
+![ai4](https://github.com/zipo0505/AIhw/blob/main/ai4.jpeg)
 
 ## 處理缺失值
     missing_vals = train_df.isnull().sum()
     missing_vals.plot(kind = 'bar')
     
-![ai5](https://github.com/zipo0505/AIhw/blob/main/ai5.jepg)
+![ai5](https://github.com/zipo0505/AIhw/blob/main/ai5.jpeg)
 
     train_df.dropna(how = 'all')
     train_df.isnull().sum()
     
-![ai6](https://github.com/zipo0505/AIhw/blob/main/ai6.jepg)
+![ai6](https://github.com/zipo0505/AIhw/blob/main/ai6.jpeg)
 
     train_df.fillna('unknown', inplace=True)
     train_df.isnull().sum()
     
-![ai7](https://github.com/zipo0505/AIhw/blob/main/ai7.jepg)
+![ai7](https://github.com/zipo0505/AIhw/blob/main/ai7.jpeg)
 
     train_data = train_df[train_df['Dataset_type'] == 'TRAIN']
     test_data = train_df[train_df['Dataset_type'] == 'TEST']
@@ -80,7 +80,7 @@
     print(f"Shape of test data : {test_data.shape}")
     test_data.sample(10)
     
-![ai8](https://github.com/zipo0505/AIhw/blob/main/ai8.jepg)
+![ai8](https://github.com/zipo0505/AIhw/blob/main/ai8.jpeg)
 
 我們將用“unknown”填充缺失值。
 
@@ -88,7 +88,7 @@
     print('--------------------------')
     print((train_df['Label_2_Virus_category']).value_counts())
     
-![ai9](https://github.com/zipo0505/AIhw/blob/main/ai9.jepg)
+![ai9](https://github.com/zipo0505/AIhw/blob/main/ai9.jpeg)
 
 因此標籤2 類別包含COVID-19案例
 ## 顯示影像
@@ -109,11 +109,11 @@
 
     plt.tight_layout()
     
-![ai10](https://github.com/zipo0505/AIhw/blob/main/ai10.jepg)
+![ai10](https://github.com/zipo0505/AIhw/blob/main/ai10.jpeg)
 ## 視覺化
     plt.figure(figsize=(15,10))
     sns.countplot(train_data['Label_2_Virus_category']);
-![ai11](https://github.com/zipo0505/AIhw/blob/main/ai11.jepg)
+![ai11](https://github.com/zipo0505/AIhw/blob/main/ai11.jpeg)
 ## 對於COVID-19 病例
     fig, ax = plt.subplots(4, 2, figsize=(15, 10))
 
@@ -133,7 +133,7 @@
             ax[row, 1].set_title('Histograms')
     fig.suptitle('Label 2 Virus Category = COVID-19', size=16)
     plt.show()
-![ai12](https://github.com/zipo0505/AIhw/blob/main/ai12.jepg)
+![ai12](https://github.com/zipo0505/AIhw/blob/main/ai12.jpeg)
 ## 對於正常情況
     fig, ax = plt.subplots(4, 2, figsize=(15, 10))
 
@@ -153,7 +153,7 @@
             ax[row, 1].set_title('Histograms')
     fig.suptitle('Label = NORMAL', size=16)
     plt.show()
-![ai13](https://github.com/zipo0505/AIhw/blob/main/ai13.jepg)
+![ai13](https://github.com/zipo0505/AIhw/blob/main/ai13.jpeg)
 
     final_train_data = train_data[(train_data['Label'] == 'Normal') | 
                                   ((train_data['Label'] == 'Pnemonia') &
@@ -203,7 +203,7 @@
     
     plt.show();
     
-![ai14](https://github.com/zipo0505/AIhw/blob/main/ai14.jepg)
+![ai14](https://github.com/zipo0505/AIhw/blob/main/ai14.jpeg)
 
     corona_df = final_train_data[final_train_data['Label_2_Virus_category'] == 'COVID-19']
     with_corona_augmented = []
@@ -223,7 +223,7 @@
 ### 注意：
 輸出太長，無法包含在文章中。這是其中的一小部分。
 
-![ai15](https://github.com/zipo0505/AIhw/blob/main/ai15.jepg)
+![ai15](https://github.com/zipo0505/AIhw/blob/main/ai15.jpeg)
 
     train_arrays = [] 
     final_train_data['X_ray_image_name'].apply(lambda x: train_arrays.append(read_img(x, (255,255), train_img_dir)))
@@ -245,7 +245,7 @@
 
     for i,l in train_dataset.take(1):
         plt.imshow(i);
-![ai16](https://github.com/zipo0505/AIhw/blob/main/ai16.jepg)
+![ai16](https://github.com/zipo0505/AIhw/blob/main/ai16.jpeg)
 ## 產生批次
     BATCH_SIZE = 16
     BUFFER = 1000
@@ -283,7 +283,7 @@
     model.add(Layers.Dense(1, activation = 'sigmoid'))
     model.summary()
     
-![ai17](https://github.com/zipo0505/AIhw/blob/main/ai17.jepg)
+![ai17](https://github.com/zipo0505/AIhw/blob/main/ai17.jpeg)
 
     callbacks = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=2)
 
@@ -294,7 +294,7 @@
 ## 預測
     model.fit(train_batches, epochs=10, validation_data=test_batches, callbacks=[callbacks])
     
-![ai18](https://github.com/zipo0505/AIhw/blob/main/ai18.jepg)
+![ai18](https://github.com/zipo0505/AIhw/blob/main/ai18.jpeg)
 
     pred = model.predict_classes(np.array(test_arrays))
 
@@ -302,7 +302,7 @@
     from sklearn.metrics import classification_report, confusion_matrix
     print(classification_report(test_data['target'], pred.flatten()))
     
-![ai19](https://github.com/zipo0505/AIhw/blob/main/ai19.jepg)
+![ai19](https://github.com/zipo0505/AIhw/blob/main/ai19.jpeg)
 
 所以正如你所看到的，預測還不錯。我們將繪製一個混淆矩陣來視覺化我們模型的表現：
 
@@ -314,4 +314,4 @@
                 xticklabels=['Negative', 'Positive'],
                 annot=True);
                 
-![ai20](https://github.com/zipo0505/AIhw/blob/main/ai20.jepg)
+![ai20](https://github.com/zipo0505/AIhw/blob/main/ai20.jpeg)
