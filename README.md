@@ -7,14 +7,14 @@
 正在進行的名為COVID-19的全球大流行是由SARS-COV-2引起的，
 該病毒傳播迅速並發生變異，引發了幾波疫情，主要影響第三世界和發展中國家。隨著世界各國政府試圖控制傳播，受影響的人數正穩定上升。
 
-![期末截圖01](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9601.jpeg?raw=true)
+![ai1](https://github.com/zipo0505/AIhw/blob/main/ai1.png)
 
 本文將使用CoronaHack-Chest X 光資料集。
 它包含胸部X 光影像，我們必須找到受冠狀病毒影響的影像。
 
 我們之前談到的SARS-COV-2 是主要影響呼吸系統的病毒類型，因此胸部X 光是我們可以用來識別受影響肺部的重要影像方法之一。這是一個並排比較：
 
-![期末截圖02](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9602.jpeg?raw=true)
+![ai2](https://github.com/zipo0505/AIhw/blob/main/ai2.jepg)
 
 如你所見，COVID-19 肺炎如何吞噬整個肺部，並且比細菌和病毒類型的肺炎更危險。
 
@@ -51,27 +51,27 @@
 
     train_df.head(5)
     
-![期末截圖03](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9603.jpeg?raw=true)
+![ai03](https://github.com/zipo0505/AIhw/blob/main/ai3.jepg)
 
     train_df.info()
     
-![期末截圖04](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9604.jpeg?raw=true)
+![ai4](https://github.com/zipo0505/AIhw/blob/main/ai4.jepg)
 
 ## 處理缺失值
     missing_vals = train_df.isnull().sum()
     missing_vals.plot(kind = 'bar')
     
-![期末截圖05](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9605.jpeg?raw=true)
+![ai5](https://github.com/zipo0505/AIhw/blob/main/ai5.jepg)
 
     train_df.dropna(how = 'all')
     train_df.isnull().sum()
     
-![期末截圖06](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9606.jpeg?raw=true)
+![ai6](https://github.com/zipo0505/AIhw/blob/main/ai6.jepg)
 
     train_df.fillna('unknown', inplace=True)
     train_df.isnull().sum()
     
-![期末截圖07](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9607.jpeg?raw=true)
+![ai7](https://github.com/zipo0505/AIhw/blob/main/ai7.jepg)
 
     train_data = train_df[train_df['Dataset_type'] == 'TRAIN']
     test_data = train_df[train_df['Dataset_type'] == 'TEST']
@@ -80,7 +80,7 @@
     print(f"Shape of test data : {test_data.shape}")
     test_data.sample(10)
     
-![期末截圖08](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9608.jpeg?raw=true)
+![ai8](https://github.com/zipo0505/AIhw/blob/main/ai8.jepg)
 
 我們將用“unknown”填充缺失值。
 
@@ -88,7 +88,7 @@
     print('--------------------------')
     print((train_df['Label_2_Virus_category']).value_counts())
     
-![期末截圖09](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9609.jpeg?raw=true)
+![ai9](https://github.com/zipo0505/AIhw/blob/main/ai9.jepg)
 
 因此標籤2 類別包含COVID-19案例
 ## 顯示影像
@@ -109,11 +109,11 @@
 
     plt.tight_layout()
     
-![期末截圖10](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9610.jpeg?raw=true)
+![ai10](https://github.com/zipo0505/AIhw/blob/main/ai10.jepg)
 ## 視覺化
     plt.figure(figsize=(15,10))
     sns.countplot(train_data['Label_2_Virus_category']);
-![期末截圖11](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9611.jpeg?raw=true)
+![ai11](https://github.com/zipo0505/AIhw/blob/main/ai11.jepg)
 ## 對於COVID-19 病例
     fig, ax = plt.subplots(4, 2, figsize=(15, 10))
 
@@ -133,7 +133,7 @@
             ax[row, 1].set_title('Histograms')
     fig.suptitle('Label 2 Virus Category = COVID-19', size=16)
     plt.show()
-![期末截圖12](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9612.jpeg?raw=true)
+![ai12](https://github.com/zipo0505/AIhw/blob/main/ai12.jepg)
 ## 對於正常情況
     fig, ax = plt.subplots(4, 2, figsize=(15, 10))
 
@@ -153,7 +153,7 @@
             ax[row, 1].set_title('Histograms')
     fig.suptitle('Label = NORMAL', size=16)
     plt.show()
-![期末截圖13](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9613.jpeg?raw=true)
+![ai13](https://github.com/zipo0505/AIhw/blob/main/ai13.jepg)
 
     final_train_data = train_data[(train_data['Label'] == 'Normal') | 
                                   ((train_data['Label'] == 'Pnemonia') &
@@ -203,7 +203,7 @@
     
     plt.show();
     
-![期末截圖14](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9614.jpeg?raw=true)
+![ai14](https://github.com/zipo0505/AIhw/blob/main/ai14.jepg)
 
     corona_df = final_train_data[final_train_data['Label_2_Virus_category'] == 'COVID-19']
     with_corona_augmented = []
@@ -223,7 +223,7 @@
 ### 注意：
 輸出太長，無法包含在文章中。這是其中的一小部分。
 
-![期末截圖15](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9615.jpeg?raw=true)
+![ai15](https://github.com/zipo0505/AIhw/blob/main/ai15.jepg)
 
     train_arrays = [] 
     final_train_data['X_ray_image_name'].apply(lambda x: train_arrays.append(read_img(x, (255,255), train_img_dir)))
@@ -245,7 +245,7 @@
 
     for i,l in train_dataset.take(1):
         plt.imshow(i);
-![期末截圖16](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9616.jpeg?raw=true)
+![ai16](https://github.com/zipo0505/AIhw/blob/main/ai16.jepg)
 ## 產生批次
     BATCH_SIZE = 16
     BUFFER = 1000
@@ -283,7 +283,7 @@
     model.add(Layers.Dense(1, activation = 'sigmoid'))
     model.summary()
     
-![期末截圖17](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9617.jpeg?raw=true)
+![ai17](https://github.com/zipo0505/AIhw/blob/main/ai17.jepg)
 
     callbacks = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=2)
 
@@ -294,7 +294,7 @@
 ## 預測
     model.fit(train_batches, epochs=10, validation_data=test_batches, callbacks=[callbacks])
     
-![期末截圖18](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9618.jpeg?raw=true)
+![ai18](https://github.com/zipo0505/AIhw/blob/main/ai18.jepg)
 
     pred = model.predict_classes(np.array(test_arrays))
 
@@ -302,7 +302,7 @@
     from sklearn.metrics import classification_report, confusion_matrix
     print(classification_report(test_data['target'], pred.flatten()))
     
-![期末截圖19](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9619.jpeg?raw=true)
+![ai19](https://github.com/zipo0505/AIhw/blob/main/ai19.jepg)
 
 所以正如你所看到的，預測還不錯。我們將繪製一個混淆矩陣來視覺化我們模型的表現：
 
@@ -314,9 +314,4 @@
                 xticklabels=['Negative', 'Positive'],
                 annot=True);
                 
-![期末截圖20](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9620.jpeg?raw=true)
-## 尾註
-這個資料集很有趣，學習資料科學和機器學習越多，就越覺得這個主題很有趣。
-
-如今如今，我們可以透過多種方式使用數據，
-使用數據可以挽救無數生命。
+![ai20](https://github.com/zipo0505/AIhw/blob/main/ai20.jepg)
