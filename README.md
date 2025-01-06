@@ -14,7 +14,7 @@
 
 我們之前談到的SARS-COV-2 是主要影響呼吸系統的病毒類型，因此胸部X 光是我們可以用來識別受影響肺部的重要影像方法之一。這是一個並排比較：
 
-![ai2](https://github.com/zipo0505/AIhw/blob/main/ai2.jepg)
+![ai2](https://github.com/zipo0505/AIhw/blob/main/ai2.jpeg)
 
 如你所見，COVID-19 肺炎如何吞噬整個肺部，並且比細菌和病毒類型的肺炎更危險。
 
